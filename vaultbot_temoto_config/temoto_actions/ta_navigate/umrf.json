@@ -1,0 +1,22 @@
+{
+    "name": "TaNavigate",
+    "package_name": "ta_navigate",
+    "description": "go",
+    "effect": "synchronous",
+    "input_parameters": {
+        "pose_2d": {
+            "x": {
+                "pvf_type": "number"
+            },
+            "y": {
+                "pvf_type": "number"
+            },
+            "yaw": {
+                "pvf_type": "number"
+            }
+        },
+        "location": {
+            "pvf_type": "string"
+        }
+    }
+}

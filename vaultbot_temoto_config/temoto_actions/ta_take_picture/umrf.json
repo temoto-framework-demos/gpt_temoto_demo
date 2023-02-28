@@ -1,0 +1,6 @@
+{
+    "name": "TaTakePicture",
+    "package_name": "ta_take_picture",
+    "description": "inspect",
+    "effect": "synchronous"
+}

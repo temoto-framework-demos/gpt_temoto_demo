@@ -1,0 +1,49 @@
+{
+    "graph_name": "ta_move_arm",
+    "graph_description": "",
+    "graph_state": 1,
+    "umrf_actions": [
+        {
+            "name": "TaMoveArm",
+            "package_name": "ta_move_arm",
+            "id": 0,
+            "effect": "synchronous",
+            "input_parameters": {
+                "pose_quat": {
+                    "orientation": {
+                        "w": {
+                            "pvf_type": "number",
+                            "pvf_value": 0.824
+                        },
+                        "x": {
+                            "pvf_type": "number",
+                            "pvf_value": 0.005
+                        },
+                        "y": {
+                            "pvf_type": "number",
+                            "pvf_value": 0.038
+                        },
+                        "z": {
+                            "pvf_type": "number",
+                            "pvf_value": -0.566
+                        }
+                    },
+                    "position": {
+                        "x": {
+                            "pvf_type": "number",
+                            "pvf_value": 0.464
+                        },
+                        "y": {
+                            "pvf_type": "number",
+                            "pvf_value": 0.441
+                        },
+                        "z": {
+                            "pvf_type": "number",
+                            "pvf_value": 0.788
+                        }
+                    }
+                }
+            }
+        }
+    ]
+}

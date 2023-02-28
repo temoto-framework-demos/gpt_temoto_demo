@@ -1,0 +1,20 @@
+{
+    "graph_name": "ta_take_photo",
+    "graph_description": "",
+    "graph_state": 1,
+    "umrf_actions": [
+        {
+            "name": "TaTakePhoto",
+            "package_name": "ta_take_photo",
+            "description": "Take_photo",
+            "id": 0,
+            "effect": "synchronous",
+            "input_parameters": {
+                "component_type": {
+                    "pvf_type": "string",
+                    "pvf_value": "realsense_left"
+                }
+            }
+        }
+    ]
+}

@@ -1,0 +1,23 @@
+<launch>
+  
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher"/>
+  
+  <!-- Launch arm drivers -->
+  <include file="$(find vb_onboard_launch)/launch/nrg_ur5_ros_control.launch"/>
+
+  <!-- Netbox for FT sensor -->
+  <include file="$(find vb_onboard_launch)/launch/netft_utils.launch"/>
+
+  <!-- AP Action Server -->
+  <include file="$(find vbats)/launch/ap_executor.launch" >
+    <arg name="executor_action_name" value="affordance_primitive_executor" />
+    <arg name="twist_cmd_topic_name" value="right_jog_arm_server/delta_jog_cmds" />
+    <arg name="wrench_cmd_topic_name" value="right_wrench_to_joint_vel_pub/set_applied_wrench" />
+    <arg name="parameter_manager_plugin" value="vbats::VBParamManager" />
+    <arg name="task_estimator_plugin" value="affordance_primitives::KinematicTaskEstimator" />
+    <arg name="ft_sensor_topic_name" value="netft/transformed_world" />
+  </include>
+
+  <!-- Service for planning Screw APs -->
+  <node pkg="vbats" type="screw_planning_service" name="screw_planning_service" output="screen"/>
+</launch>

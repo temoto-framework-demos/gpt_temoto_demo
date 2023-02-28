@@ -1,0 +1,34 @@
+{
+    "graph_name": "ta_navigate",
+    "graph_description": "",
+    "graph_state": 1,
+    "umrf_actions": [
+        {
+            "name": "TaNavigate",
+            "package_name": "ta_navigate",
+            "description": "go",
+            "id": 0,
+            "effect": "synchronous",
+            "input_parameters": {
+                "location": {
+                    "pvf_type": "string",
+                    "pvf_value": "kitchen"
+                },
+                "pose_2d": {
+                    "x": {
+                        "pvf_type": "number",
+                        "pvf_value": 2.0
+                    },
+                    "y": {
+                        "pvf_type": "number",
+                        "pvf_value": 0.0
+                    },
+                    "yaw": {
+                        "pvf_type": "number",
+                        "pvf_value": 0.0
+                    }
+                }
+            }
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "name": "TaStartComponent",
+    "package_name": "ta_start_component",
+    "description": "ta_start_component",
+    "effect": "asynchronous",
+    "input_parameters": {
+        "component": {
+            "pvf_type": "string"
+        }
+    }
+}

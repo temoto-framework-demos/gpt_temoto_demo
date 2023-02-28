@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="use_slam" default="false"/>
+
+  <arg name="indoor" default="true"/>
+  <arg name="lidar_2d" default="true"/>
+  <!-- <arg name="two_maps" value="false"/>
+  <arg name="map_file" value="$(find vb_onboard_launch)/config/map_ahg.yaml"/> -->
+  <arg name="drawn_map_file" default="$(find vb_onboard_launch)/config/map_ahg_shellproj.yaml"/>
+
+  <include file="$(find vb_onboard_launch)/launch/ouster_to_laserscan.launch"/>
+  
+  <group if="$(arg indoor)">
+    <arg name="two_maps" value="false"/>
+    <arg name="map_file" value="$(find vb_onboard_launch)/config/map_ahg.yaml"/>
+    <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)"/>
+    <group if="$(arg lidar_2d)">
+      <include file="$(find husky_navigation)/launch/move_base.launch">
+        <arg if="$(arg two_maps)" name="map_topic" value="second_map" />
+        <arg unless="$(arg two_maps)" name="map_topic" value="map" />
+      </include>
+    </group>
+    <group unless="$(arg lidar_2d)">
+      <include file="$(find husky_navigation)/launch/move_base_3d.launch">
+        <arg if="$(arg two_maps)" name="map_topic" value="second_map" />
+        <arg unless="$(arg two_maps)" name="map_topic" value="map" />
+      </include>
+    </group>
+
+  </group>
+  <group unless="$(arg indoor)">
+    <arg name="two_maps" value="true"/>
+    <arg name="map_file" value="$(find vb_onboard_launch)/config/map_ahg_shellproj_nolines.yaml"/>
+    <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)"/>
+    <node name="second_map_server" pkg="map_server" type="map_server" args="$(arg drawn_map_file)">
+        <remap from="map" to="second_map"/>
+        <remap from="static_map" to="second_static_map"/>
+      </node>
+    <group if="$(arg lidar_2d)">
+      <include file="$(find husky_navigation)/launch/move_base.launch">
+        <arg if="$(arg two_maps)" name="map_topic" value="second_map" />
+        <arg unless="$(arg two_maps)" name="map_topic" value="map" />
+      </include>
+    </group>
+    <group unless="$(arg lidar_2d)">
+      <include file="$(find husky_navigation)/launch/move_base_3d.launch">
+        <arg if="$(arg two_maps)" name="map_topic" value="second_map" />
+        <arg unless="$(arg two_maps)" name="map_topic" value="map" />
+      </include>
+    </group>
+  </group>
+
+
+  <group if="$(arg use_slam)">
+    <node pkg="gmapping" name="slam_gmapping" type="slam_gmapping" output="screen" args="scan:=lidar/scan"/>
+  </group>
+  <group unless="$(arg use_slam)">
+    <include file="$(find husky_navigation)/launch/amcl.launch">
+      <arg name="scan_topic" value="lidar/scan"/>
+    </include>
+  </group>
+
+  <!-- Adjust the footprint of the robot with respect the current pose (listening the TF) -->
+  <!-- <node pkg="vaultbot_temoto_config" name="robot_state_fp" type="robot_state.py"/> -->
+
+
+
+
+  <!-- Run Move Base -->
+
+    <!-- TODO try to remap scan to lidar/scan  -->
+    <!-- It didnt work here, so it's done in husky navigation move_base -->
+</launch>

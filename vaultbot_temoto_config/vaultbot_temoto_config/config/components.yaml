@@ -1,0 +1,52 @@
+Components:
+- component_name: "realsense_left"
+  component_type: "realsense_left"
+  package_name: "vb_onboard_launch"
+  executable: "realsense_left435_remap.launch"
+  output_topics:
+    camera_data: "camera_left/color/image_raw"
+    camera_data_compressed: "camera_left/color/image_raw/compressed"
+    camera_info: "camera_left/color/camera_info"
+
+- component_name: "realsense_right"
+  component_type: "realsense_right"
+  package_name: "vb_onboard_launch"
+  executable: "realsense_right435_remap.launch"
+  output_topics:
+    camera_data: "camera_right/color/image_raw"
+    camera_data_compressed: "camera_right/color/image_raw/compressed"
+    camera_info: "camera_right/color/camera_info"
+
+- component_name: "kodak_front"
+  component_type: "kodak_front"
+  package_name: "vb_onboard_launch"
+  executable: "kodak_front.launch"
+  output_topics:
+    camera_data: "kodak_front/image_raw"
+    camera_data_compressed: "kodak_front/image_raw/compressed"
+    camera_info: "kodak_front/camera_info"
+
+- component_name: "kodak_rear"
+  component_type: "kodak_rear"
+  package_name: "vb_onboard_launch"
+  executable: "kodak_rear.launch"
+  output_topics:
+    camera_data: "kodak_rear/image_raw"
+    camera_data_compressed: "kodak_rear/image_raw/compressed"
+    camera_info: "kodak_rear/camera_info"
+
+- component_name: "op logitech"
+  component_type: "logitech"
+  package_name: "vaultbot_temoto_config"
+  executable: "logitech_controller.launch"
+  input_topics:
+    twist_topic: "cmd_vel"
+    twistStamped_topic: "delta_twist_cmds"
+
+- component_name: "save_image"
+  component_type: "save_image"
+  package_name: "vaultbot_temoto_config"
+  executable:  "save_image.launch"
+  input_topics:
+    image_topic: "image"
+    filename: "image_%04d.%s"

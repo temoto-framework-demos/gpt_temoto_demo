@@ -1,0 +1,14 @@
+{
+    "graph_name": "ta_take_picture",
+    "graph_description": "",
+    "graph_state": 1,
+    "umrf_actions": [
+        {
+            "name": "TaTakePicture",
+            "package_name": "ta_take_picture",
+            "description": "inspect",
+            "id": 0,
+            "effect": "synchronous"
+        }
+    ]
+}

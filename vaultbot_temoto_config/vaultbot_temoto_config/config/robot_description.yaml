@@ -1,0 +1,58 @@
+Robots:
+- robot_name: "genh_gripper"
+  description: "NRG vaultbot simulation"
+  reliability: 0.8
+  urdf:
+    package_name: "vaultbot_description"
+    executable: "urdf/geh6000il.urdf.xacro"
+  gripper:
+    controller:
+      package_name: "temoto_gripper_converter" 
+      executable: "gen_gripper_controller.launch"      
+    driver:
+      package_name: "vaultbot_temoto_config" 
+      executable: "vaultbot_gripper_driver.launch"
+      args: "gazebo_gui:=false"
+
+- robot_name: "vaultbot"
+  description: "NRG vaultbot"
+  reliability: 0.8
+  urdf:
+    package_name: "vaultbot_description"
+    executable: "urdf/vaultbot_robot_tools.urdf.xacro"
+  navigation:
+    controller:
+      package_name: "vaultbot_temoto_config"
+      executable: "vaultbot_nav_controller.launch"
+      global_planner: "navfn/NavfnROS"
+      local_planner: "dwa_local_planner/DWAPlannerROS"
+      scan_topic: "lidar/scan"
+      pose_topic: "amcl_pose"
+      # --- CHANGE THESE TO SELECT MAPS AND NAV METHOD ---
+      # args: "indoor:=true lidar_2d:=true"
+      # args: "indoor:=true lidar_2d:=false"
+      # args: "indoor:=false lidar_2d:=false"
+      args: "indoor:=false lidar_2d:=true"
+    driver:
+      package_name: "vaultbot_temoto_config" 
+      executable: "vaultbot_nav_driver.launch"
+      odom_topic: "odometry/filtered"
+      # odom_topic: "husky_velocity_controller/odom"
+      cmd_vel_topic: "cmd_vel"
+  manipulation:
+    controller:
+      package_name: "vaultbot_temoto_config" 
+      executable: "vaultbot_manip_controller.launch"
+      args: "show_rviz:=false debug:=false"
+      planning_groups: ["arms", "left_ur5", "right_ur5", "gripper"]
+    driver:
+      package_name: "vaultbot_temoto_config" 
+      executable: "vaultbot_manip_driver.launch"
+  gripper:
+    controller:
+      package_name: "temoto_gripper_converter" 
+      executable: "gen_gripper_controller.launch"      
+    driver:
+      package_name: "vaultbot_temoto_config" 
+      executable: "vaultbot_gripper_driver.launch"
+      args: "gazebo_gui:=false"

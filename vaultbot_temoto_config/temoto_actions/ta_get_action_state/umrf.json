@@ -1,0 +1,5 @@
+{
+    "name": "TaGetActionState",
+    "package_name": "ta_get_action_state",
+    "effect": "synchronous"
+}

@@ -1,0 +1,11 @@
+{
+    "name": "TaTakePhoto",
+    "package_name": "ta_take_photo",
+    "description": "Take_photo",
+    "effect": "synchronous",
+    "input_parameters": {
+        "component_type": {
+            "pvf_type": "string"
+        }
+    }
+}

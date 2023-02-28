@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<launch>
+      <!-- Start the Husky Base -->
+  <include file="$(find vb_onboard_launch)/launch/base.launch"/>
+  <!-- Load peripherals (LIDAR) -->
+  <include file="$(find vb_onboard_launch)/launch/lms5xx.launch"/>
+
+  <!-- Load Ouster LIDAR -->
+  <include file="$(find ouster_ros)/launch/sensor.launch" >
+    <arg name="sensor_hostname" value="192.168.1.128" />
+    <arg name="viz" value="false" />
+  </include>
+</launch>
+
+
+  

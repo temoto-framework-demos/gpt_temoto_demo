@@ -1,0 +1,29 @@
+<launch>
+
+   <!-- Launch arm drivers -->
+  <include file="$(find vaultbot_tools_moveit_config)/launch/vaultbot_moveit_planning_execution.launch"/>
+  <param name="robot_description_planning/shape_transform_cache_lookup_wait_time" value="0.5" />
+
+  <!-- Start wrench to compliant velocity node -->
+  <include file="$(find vb_onboard_launch)/launch/compliance_vel_left.launch" />
+  <include file="$(find vb_onboard_launch)/launch/compliance_vel_right.launch" />
+
+  <!-- Start cameras -->
+  <!-- TODO: Load with the componenet manager -->
+  <!-- <include file="$(find vb_onboard_launch)/launch/cameras.launch" /> -->
+
+  <!-- Convert Depth image to Pointcloud -->
+  <include file="$(find vb_onboard_launch)/launch/pc_processing.launch" />
+
+  <!-- Start Moveit Servo -->
+  <node name="right_jog_arm_server" pkg="moveit_servo" type="servo_server" output="screen" >
+      <rosparam command="load" file="$(find vaultbot_temoto_config)/config/jog_right_settings.yaml" />
+      <remap from="/right_ur5/compliance_controller/velocity_command" to="right_ur5/compliance_controller/velocity_command"/>
+  </node>
+
+  <node name="left_jog_arm_server" pkg="moveit_servo" type="servo_server" output="screen">
+      <rosparam command="load" file="$(find vaultbot_temoto_config)/config/jog_left_settings.yaml" />
+      <remap from="/left_ur5/compliance_controller/velocity_command" to="left_ur5/compliance_controller/velocity_command"/>
+  </node>
+
+</launch>

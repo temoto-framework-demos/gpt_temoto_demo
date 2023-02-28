@@ -1,0 +1,20 @@
+{
+    "graph_name": "ta_start_component",
+    "graph_description": "",
+    "graph_state": 1,
+    "umrf_actions": [
+        {
+            "name": "TaStartComponent",
+            "package_name": "ta_start_component",
+            "description": "ta_start_component",
+            "id": 0,
+            "effect": "asynchronous",
+            "input_parameters": {
+                "component": {
+                    "pvf_type": "string",
+                    "pvf_value": "realsense_left"
+                }
+            }
+        }
+    ]
+}

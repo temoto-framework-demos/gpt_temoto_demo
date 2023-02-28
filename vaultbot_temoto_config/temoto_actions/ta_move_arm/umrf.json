@@ -1,0 +1,34 @@
+{
+    "name": "TaMoveArm",
+    "package_name": "ta_move_arm",
+    "effect": "synchronous",
+    "input_parameters": {
+        "pose_quat": {
+            "orientation": {
+                "w": {
+                    "pvf_type": "number"
+                },
+                "x": {
+                    "pvf_type": "number"
+                },
+                "y": {
+                    "pvf_type": "number"
+                },
+                "z": {
+                    "pvf_type": "number"
+                }
+            },
+            "position": {
+                "x": {
+                    "pvf_type": "number"
+                },
+                "y": {
+                    "pvf_type": "number"
+                },
+                "z": {
+                    "pvf_type": "number"
+                }
+            }
+        }
+    }
+}

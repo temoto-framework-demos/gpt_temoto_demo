@@ -1,0 +1,59 @@
+{
+    "graph_name": "start_cameras",
+    "graph_description": "",
+    "graph_state": 1,
+    "umrf_actions": [
+        {
+            "name": "TaStartComponent",
+            "package_name": "ta_start_component",
+            "description": "realsense_left",
+            "id": 0,
+            "effect": "asynchronous",
+            "input_parameters": {
+                "component": {
+                    "pvf_type": "string",
+                    "pvf_value": "realsense_left"
+                }
+            }
+        },
+        {
+            "name": "TaStartComponent",
+            "package_name": "ta_start_component",
+            "description": "realsense_right",
+            "id": 1,
+            "effect": "asynchronous",
+            "input_parameters": {
+                "component": {
+                    "pvf_type": "string",
+                    "pvf_value": "realsense_right"
+                }
+            }
+        },
+        {
+            "name": "TaStartComponent",
+            "package_name": "ta_start_component",
+            "description": "kodak_front",
+            "id": 2,
+            "effect": "asynchronous",
+            "input_parameters": {
+                "component": {
+                    "pvf_type": "string",
+                    "pvf_value": "kodak_front"
+                }
+            }
+        },
+        {
+            "name": "TaStartComponent",
+            "package_name": "ta_start_component",
+            "description": "kodak_rear",
+            "id": 3,
+            "effect": "asynchronous",
+            "input_parameters": {
+                "component": {
+                    "pvf_type": "string",
+                    "pvf_value": "kodak_rear"                    
+                }
+            }
+        }
+    ]
+}

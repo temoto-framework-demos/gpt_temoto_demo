@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<launch>
+
+  <include file="$(find vb_onboard_launch)/launch/gripper.launch"/>
+  
+</launch>
+
